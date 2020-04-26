@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
-
+import re
 
 
 class StaticFormat:
@@ -17,14 +17,13 @@ class StaticFormat:
         """
         Formats resource locator string to meet django static template tag syntax with given prefix
         """
-        #remove references to current directory
-        str = str.replace("./","")
-        #append prefix (if not None) based on whether passed string has prepending /
-        if str[0] != "/" and prefix: 
-            str = f"{prefix}/{str}"
-        elif prefix:
-            str = f"{prefix}{str}"
-        return "{% static '" + str + "' %}"
+        #relative directory prefixes
+        res = re.findall(r"\w+/+", str)
+        path = "".join(res)
+        #append prefix (if not None)
+        if prefix:
+            path = f"{prefix}/{path}"
+        return "{{% static '{path}' %}}"
     def replace_locators(self, prefix=None):
         """
         Updates html elements resource locators for use in Django template tags
