@@ -27,7 +27,7 @@ Let's say you have this HTML document which you purchased/found online and would
  |           style.css
 ```
 
-Typically I would like to store static files in my static directory within another directory called `home` like
+Typically I would like to store static files in my static directory within another subdirectory called `home` like
 ```
 |static/
 |    home/
