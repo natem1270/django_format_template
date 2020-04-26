@@ -18,25 +18,25 @@ Now all static file paths will be formatted to be (using passed prefix home):
 ### Intended Use Case
 
 Let's say you have this HTML document which you purchased/found online and would like to serve through Django that came with some static assets in the following directory structure:
-
- -  index.html
- -  assets/
- -       imgs/
- -           myimg.png
- -       css/
- -           style.css
-
+```
+ |  index.html
+ |  assets/
+ |       imgs/
+ |           myimg.png
+ |       css/
+ |           style.css
+```
 
 Typically I would like to store static files in my static directory within another directory called `home` like
-
-- static/
--    home/
--        assets/
--            imgs/
--                myimg.png
--            css/
--                style.css
-                 
+```
+|static/
+|    home/
+|       assets/
+|           imgs/
+|               myimg.png
+|           css/
+|               style.css
+```                 
 This way I can modularize different parts of my static files based on their use in the application.  For example my static dir may have another subdirectory `auth` that contains static files related to authentication.
 
 This means that all of our static resources must be formatted as follows to be served through Django:
