@@ -1,9 +1,11 @@
 # django_format_template
 
-Uses BeautifulSoup to parse an HTML file and iterate over the following HTML tags which can load static resources: a, link, script, img.  If any element of any of these types contains a src or href attribute that does not represent a valid URL, the attribute value is formatted to meet django static template tag syntax.  This is to help with converting prebuilt HTML templates with local file paths to be served through Django.
+Uses BeautifulSoup to parse an HTML file and iterate over the following HTML tags: `a`, `link`, `script`, `img`.  These elements can contain href or src attributes referring to static files through a directory path or URL.  If an element is found to have an href or src attribute using a directory path it's updated to use Django's template tag syntax with an optional prefix.
+```
+{% static 'prefix/original/resource/path/file.ext' %}
+```
 
-### Usage
-An HTML file can be converted to serve static files through Django as follows:
+### Usage:
 ```
 from django_format_template import StaticFormat
 
@@ -12,13 +14,10 @@ sf = StaticFormat(file_path)
 sf.replace_locators(prefix="home")
 sf.write_html("output.html")
 ```
-Now all static file paths will be formatted to be (using passed prefix home):
-```
-{% static 'home/orignial/resource/path' %}
-```
-### Intended Use Case
+Now all static file paths will be formatted to use django template tag syntax.
 
-Let's say you have this HTML document which you purchased/found online and would like to serve through Django that came with some static assets in the following directory structure:
+### Intended Use Case
+There's an HTML document that you would like to serve through Django that came with some static assets in the following directory structure:
 ```
  |  index.html
  |  assets/
@@ -28,7 +27,7 @@ Let's say you have this HTML document which you purchased/found online and would
  |           style.css
 ```
 
-Typically I would like to store static files in my static directory within another subdirectory called `home` like
+Typically I would like to store static files in my static directory within another subdirectory like `home` in this example
 ```
 |static/
 |    home/
