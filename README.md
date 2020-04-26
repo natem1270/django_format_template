@@ -19,38 +19,23 @@ Now all static file paths will be formatted to be (using passed prefix home):
 
 Let's say you have this HTML document which you purchased/found online and would like to serve through Django that came with some static assets in the following directory structure:
 
- |  index.html
- |  assets/
- |       imgs/
- |         myimg.png
- |       css/
- |         style.css
+ -  index.html
+ -  assets/
+ -       imgs/
+ -           myimg.png
+ -       css/
+ -           style.css
 
-
-This is the index.html for our example.
-```
-<html>
-<head>
-  <title>My Page</title>
-  <link href="assets/css/style.css></link>
-</head>
-<body>
-  <img src="assets/imgs/myimg.png">
-  <p>Sample Page</p>
-  <img src="https://images.unsplash.com/photo-1546238232-20216dec9f72?ixlib=rb-1.2.1&w=1000&q=80">
-</body>
-</html>
-```
 
 Typically I would like to store static files in my static directory within another directory called `home` like
 
-| static/
-|    home/
-|        assets/
-|            imgs/
-|                myimg.png
-|            css/
-|                style.css
+- static/
+-    home/
+-        assets/
+-            imgs/
+-                myimg.png
+-            css/
+-                style.css
                  
 This way I can modularize different parts of my static files based on their use in the application.  For example my static dir may have another subdirectory `auth` that contains static files related to authentication.
 
