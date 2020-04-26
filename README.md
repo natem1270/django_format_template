@@ -10,6 +10,7 @@ from django_format_template import StaticFormat
 file_path = "index.html"
 sf = StaticFormat(file_path)
 sf.replace_locators(prefix="home")
+sf.write_html("output.html")
 ```
 Now all static file paths will be formatted to be (using passed prefix home):
 ```
