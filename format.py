@@ -5,7 +5,8 @@ import re
 
 class StaticFormat:
     def __init__(self, fp, parser="html.parser"):
-        self.soup = BeautifulSoup(fp, parser)
+        with open(fp, "rb") as f:
+            self.soup = BeautifulSoup(f, parser)
     def _valid_url(self, str):
         """
         Checks if a resource locator is a valid URL
@@ -23,7 +24,7 @@ class StaticFormat:
         #append prefix (if not None)
         if prefix:
             path = f"{prefix}/{path}"
-        return "{{% static '{path}' %}}"
+        return f"{{% static '{path}' %}}"
     def replace_locators(self, prefix=None):
         """
         Updates html elements resource locators for use in Django template tags
