@@ -19,7 +19,7 @@ class StaticFormat:
         Formats resource locator string to meet django static template tag syntax with given prefix
         """
         #relative directory prefixes
-        res = re.findall(r"\w+/+", str)
+        res = re.findall(r"(\w.+)", str)
         path = "".join(res)
         #append prefix (if not None)
         if prefix:
